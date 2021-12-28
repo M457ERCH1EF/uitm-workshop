@@ -1,8 +1,3 @@
-Kandungan:
-
-[[_TOC_]]
-
-
 # Latihan 2: NodeJS
 
 Latihan ini adalah untuk menunjukkan pemahaman NodeJS
