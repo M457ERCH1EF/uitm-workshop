@@ -1,5 +1,3 @@
-[[_TOC_]]
-
 # Latihan 1: Javascript
 
 Latihan ini adalah untuk menunjukkan penggunaan Javascript di *web browser*
