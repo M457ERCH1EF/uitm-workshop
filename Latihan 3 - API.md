@@ -1,6 +1,4 @@
-[[_TOC_]]
-
-# Latihan 5: API
+# Latihan 3: API
 Latihan ini adalah untuk menunjukkan pemahaman membangunkan API menggunakan **_ExpressJS Framework_**
 
 # Langkah 1.0: _Install Visual Studio Code Extension_
@@ -259,152 +257,18 @@ content-type: application/json
 
 * Di terminal, untuk **_stop_** applikasi NodeJS, tekan kekunci **_Ctrl-C_**
 
-# Langkah 8.0: Penggunaan HTTP POST, JSON & Exports
-Langkah ini adalah untuk membangunkan API menggunakan _**HTTP POST, JSON &  Javascript Exports function**_
 
-* Wujudkan fail **congak.js**. Dari Menu, klik **_File -> New File_**
-* Salin dan tampal kod berikut
-
-```
-exports.tambah = (a,b) => {
-    let jawapan = a + b
-    return jawapan
-}
-
-exports.tolak = (a,b) => {
-    let jawapan = a - b
-    return jawapan
-}
-```
-* Simpan / (_**Save**_) fail. Sila rujuk paparan berikut:
-
-<img src="https://gitlab.com/akademi-cloud-connect/johor-ict/latihan-pembangunan-aplikasi-moden/uploads/a1645276779bf23055aee417d09cd4ed/image.png">
-
-* Wujudkan fail **postcongak.js**. Dari Menu, klik **_File -> New File_**
-* Salin dan tampal kod berikut
-
-```
-const express = require('express');
-const bodyParser = require('body-parser');
-const congak = require('./congak.js');
-
-const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-
-app.post('/tambah', (req, res) => {
-    console.log(req.body);
-    const a = req.body.valueA
-    const b = req.body.valueB
-    
-    const jawapan = a + b
-    res.json({ jumlah: jawapan })
-});
-
-app.post('/congaktambah', (req, res) => {
-    console.log(req.body);
-    const a = req.body.valueA
-    const b = req.body.valueB
-    
-    const jawapan = congak.tambah(a,b)
-    res.json({ jumlahtambah: jawapan })
-});
-
-app.post('/congaktolak', (req, res) => {
-    console.log(req.body);
-    const a = req.body.valueA
-    const b = req.body.valueB
-    
-    const jawapan = congak.tolak(a,b)
-    res.json({ jumlahtolak: jawapan })
-});
-
-app.get('/', (req, res) => {
-    res.send('Salam Muafakat!');
-});
-
-app.get('/johor', (req, res) => {
-    res.json({ data: "Salam Muafakat" });
-});
-
-app.listen(8080, () => {
-    console.log('App listening on port 8080!');
-});
-
-```
-* Simpan / (_**Save**_) fail. 
-* Buka fail **uji.http**.
-* Salin dan tampal kod berikut
-
-```
-###
-POST http://localhost:8080/tambah
-content-type: application/json
-
-{
-    "valueA": 5,
-    "valueB": 6
-}
-
-###
-POST http://localhost:8080/congaktambah
-content-type: application/json
-
-{
-    "valueA": 10,
-    "valueB": 9
-}
-
-
-###
-POST http://localhost:8080/congaktolak
-content-type: application/json
-
-{
-    "valueA": 10,
-    "valueB": 9
-}
-```
-* Simpan / (_**Save**_) fail. 
-
-# Langkah 9.0: Uji Penggunaan HTTP POST, JSON & Exports
-* Di terminal taip kod seperti berikut:
-
-```
-> node postcongak.js
-```
-* Jika berjaya, berikut adalah paparan maklumat di terminal:
-```
-App listening on port 8080!
-```
-
-* Di fail uji.http, klik **Send Request** untuk **POST http://localhost:8080/tambah**. Sila rujuk paparan berikut:
-
-<img src="https://gitlab.com/akademi-cloud-connect/johor-ict/latihan-pembangunan-aplikasi-moden/uploads/635f282a45b65adaefa2d5269ad4a781/image.png">
-
-* Berikut adalah paparan di sebelah kanan jika berjaya
-
-<img src="https://gitlab.com/akademi-cloud-connect/johor-ict/latihan-pembangunan-aplikasi-moden/uploads/c3c81490eba0a3174fb3536a69a1ac81/image.png">
-
-* Di fail uji.http, klik **Send Request** untuk **POST http://localhost:8080/congaktambah**, rujuk dan sahkan jawapan di sebelah kanan
-* Di fail uji.http, klik **Send Request** untuk **POST http://localhost:8080/congaktolak**, rujuk dan sahkan jawapan di sebelah kanan
-* Di terminal, untuk **_stop_** applikasi NodeJS, tekan kekunci **_Ctrl-C_**
-
-
-# Langkah 10.0: Pengunaan NPM RUN
+# Langkah 8.0: Pengunaan NPM RUN
 Langkah ini adalah untuk membuat konfigurasi NodeJS dengan menggunakan _command **NPM RUN**_
 * Buka fail **package.json**.
 * Tukar kod _**"script"**_ dengan salin dan tampal kod seperti berikut
 
 ```
 "scripts": {
-    "start": "node postcongak.js"
+    "start": "node postjson.js"
   },
 ```
-* Simpan / (_**Save**_) fail. Sila rujuk paparan berikut:
-
-<img src="https://gitlab.com/akademi-cloud-connect/johor-ict/latihan-pembangunan-aplikasi-moden/uploads/8aad8edf54e3a7033431110e29a32232/image.png">
-
+* Simpan / (_**Save**_) fail. 
 * Di terminal taip kod seperti berikut:
 
 ```
@@ -413,9 +277,9 @@ Langkah ini adalah untuk membuat konfigurasi NodeJS dengan menggunakan _command 
 * Jika berjaya, berikut adalah paparan maklumat di terminal (maklumat akan berbeza di terminal anda):
 ```
 > latihan-5@1.0.0 start /Users/hanafiah/Documents/Development/node/latihan/latihan-5
-> node postcongak.js
+> node postjson.js
 
 App listening on port 8080!
 ```
 
-* Di fail uji.http, klik **Send Request** untuk **POST http://localhost:8080/tambah**. Jika berjaya maklumat yang sama akan di paparkan seperti ujian di Langkah 9.0
+* Di fail uji.http, klik **Send Request** untuk **POST http://localhost:8080/echo**. Jika berjaya maklumat yang sama akan di paparkan seperti ujian di Langkah 7.5
